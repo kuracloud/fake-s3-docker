@@ -1,13 +1,16 @@
 FROM debian:jessie
-MAINTAINER Larry Howard <larry.howard@vanderbilt.edu>
+MAINTAINER Cam Jackson
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# install Ruby
-RUN apt-get update && apt-get install -yqq ruby rubygems-integration
+# install Ruby & git
+RUN apt-get update && apt-get install -yqq ruby rubygems-integration git
+
+# enable installing gems directly from a git repo
+RUN gem install specific_install
 
 # install fake-s3
-RUN gem install fakes3 -v 0.2.5
+RUN gem specific_install -l https://github.com/saltzmanjoelh/fake-s3.git
 
 # run fake-s3
 RUN mkdir -p /fakes3_root
