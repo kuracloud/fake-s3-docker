@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -yqq ruby rubygems-integration git
 RUN gem install specific_install
 
 # install fake-s3
-RUN gem specific_install -l https://github.com/matcric/fake-s3.git
+# RUN gem specific_install -l https://github.com/matcric/fake-s3.git
+RUN gem specific_install -l https://github.com/saltzmanjoelh/fake-s3.git
 
 # run fake-s3
 RUN mkdir -p /fakes3_root
